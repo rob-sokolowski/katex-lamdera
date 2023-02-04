@@ -22,6 +22,9 @@ type FrontendMsg
     | UrlChanged Url
     | NoOpFrontendMsg
     | Do_VegaLiteOp
+    | Do_LoadVegaLite
+    | Do_LoadVega
+    | Do_LoadVegaEmbed
 
 
 type ToBackend

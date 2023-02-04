@@ -76,6 +76,15 @@ update msg model =
         Do_VegaLiteOp ->
             ( model, vegaLiteElmToJs <| toVegaLiteSpec model )
 
+        Do_LoadVegaLite ->
+            ( model, loadVegaLite () )
+
+        Do_LoadVega ->
+            ( model, loadVega () )
+
+        Do_LoadVegaEmbed ->
+            ( model, loadVegaEmbed () )
+
 
 updateFromBackend : ToFrontend -> Model -> ( Model, Cmd FrontendMsg )
 updateFromBackend msg model =
@@ -114,6 +123,54 @@ viewElements model =
             , Border.color Theme.gray
             , centerX
             ]
+            { onPress = Just Do_LoadVega
+            , label =
+                el
+                    [ clip
+                    , Border.rounded 6
+                    ]
+                <|
+                    E.text "Load Vega"
+            }
+        , Input.button
+            [ padding 3
+            , Border.rounded 9
+            , Border.width 3
+            , Border.color Theme.gray
+            , centerX
+            ]
+            { onPress = Just Do_LoadVegaLite
+            , label =
+                el
+                    [ clip
+                    , Border.rounded 6
+                    ]
+                <|
+                    E.text "Load VegaLite"
+            }
+        , Input.button
+            [ padding 3
+            , Border.rounded 9
+            , Border.width 3
+            , Border.color Theme.gray
+            , centerX
+            ]
+            { onPress = Just Do_LoadVegaEmbed
+            , label =
+                el
+                    [ clip
+                    , Border.rounded 6
+                    ]
+                <|
+                    E.text "Load VegaEmbed"
+            }
+        , Input.button
+            [ padding 3
+            , Border.rounded 9
+            , Border.width 3
+            , Border.color Theme.gray
+            , centerX
+            ]
             { onPress = Just Do_VegaLiteOp
             , label =
                 el
@@ -140,7 +197,7 @@ viewScriptaDemo model =
 viewVegaLiteElements : Model -> Element FrontendMsg
 viewVegaLiteElements model =
     el
-        [ E.htmlAttribute (Attr.id "vega-lite-viz")
+        [ E.htmlAttribute (Attr.id "elm-ui-viz")
         , width (px 250)
         , centerX
         , height (px 250)
@@ -170,3 +227,12 @@ toVegaLiteSpec _ =
 
 
 port vegaLiteElmToJs : V.Spec -> Cmd msg
+
+
+port loadVegaLite : () -> Cmd msg
+
+
+port loadVega : () -> Cmd msg
+
+
+port loadVegaEmbed : () -> Cmd msg
