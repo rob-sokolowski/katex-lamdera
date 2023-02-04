@@ -2,6 +2,7 @@ module Expression exposing (Expr(..), exprListParser, parse, render, compile)
 
 import Html exposing (Html)
 import Html.Attributes
+import VegaLite exposing (..)
 import KaTeX
 import Parser exposing ((|.), (|=), Parser)
 

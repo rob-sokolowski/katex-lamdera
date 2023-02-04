@@ -21,6 +21,7 @@ type FrontendMsg
     = UrlClicked UrlRequest
     | UrlChanged Url
     | NoOpFrontendMsg
+    | Do_VegaLiteOp
 
 
 type ToBackend
