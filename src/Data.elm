@@ -3,14 +3,10 @@ module Data exposing (initialText)
 
 initialText =
     """
-Pythagoras sez: $a^2 + b^2 = c^2$.  Extremely cool!
-
-This will be on the test:
+KaTeX on Lamdera!
 
 $$
-\\int_0^1 x^n dx = \\frac{1}{n+ 1}
+e^{i \\pi} + 1 = 0
 $$
-
-Study hard!
 
 """
