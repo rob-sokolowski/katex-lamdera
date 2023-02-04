@@ -103,8 +103,10 @@ viewElements model =
         , centerX
         , Border.width 1
         , Border.color Theme.black
+        , spacing 5
         ]
         [ viewScriptaDemo model
+        , el [ centerX ] <| E.text "Now let's try a Vega-Lite plot, click button to trigger port"
         , Input.button
             [ padding 3
             , Border.rounded 9
@@ -114,8 +116,6 @@ viewElements model =
             ]
             { onPress = Just Do_VegaLiteOp
             , label =
-                -- The label can be any element, so for example, the button
-                -- can contain an image
                 el
                     [ clip
                     , Border.rounded 6
@@ -124,6 +124,7 @@ viewElements model =
                     E.text "Click to Render!"
             }
         , viewVegaLiteElements model
+        , el [ centerX ] <| E.text "=("
         ]
 
 
