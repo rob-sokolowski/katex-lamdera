@@ -2,7 +2,9 @@ module Frontend exposing (..)
 
 import Browser exposing (UrlRequest(..))
 import Browser.Navigation as Nav
-import Html
+import Data
+import Expression
+import Html exposing (Html)
 import Html.Attributes as Attr
 import Lamdera
 import Types exposing (..)
@@ -29,6 +31,7 @@ init : Url.Url -> Nav.Key -> ( Model, Cmd FrontendMsg )
 init url key =
     ( { key = key
       , message = "Welcome to Lamdera! You're looking at the auto-generated base implementation. Check out src/Frontend.elm to start coding!"
+      , sourceText = Data.initialText
       }
     , Cmd.none
     )
@@ -66,14 +69,11 @@ updateFromBackend msg model =
 view : Model -> Browser.Document FrontendMsg
 view model =
     { title = ""
-    , body =
-        [ Html.div [ Attr.style "text-align" "center", Attr.style "padding-top" "40px" ]
-            [ Html.img [ Attr.src "https://lamdera.app/lamdera-logo-black.png", Attr.width 150 ] []
-            , Html.div
-                [ Attr.style "font-family" "sans-serif"
-                , Attr.style "padding-top" "40px"
-                ]
-                [ Html.text model.message ]
-            ]
-        ]
+    , body = [ viewHtml model ]
     }
+
+viewHtml : Model -> Html FrontendMsg
+viewHtml model =
+    Html.p []
+      [Expression.compile model.sourceText]
+
